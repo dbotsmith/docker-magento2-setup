@@ -1,6 +1,6 @@
 # Versions
 
-- [`1.0.0`, `1.0`, `latest` (_Dockerfile_)](https://bitbucket.org/mageinferno/docker-magento2-setup/src/master/Dockerfile)
+- [`1.0.0`, `1.0`, `latest` (_Dockerfile_)](https://github.com/mageinferno/docker-magento2-setup/blob/master/Dockerfile)
 
 # Description
 
@@ -12,7 +12,7 @@ This image contains a custom installer script which downloads Magento 2 source c
 
 # How to use this image?
 
-We recommend configuring your setup using our [`docker-compose.yml`](https://bitbucket.org/mageinferno/magento2-docker-compose/src/master/docker-compose.yml) file. This allows easy configuration and installation setup with our other Docker images.
+We recommend configuring your setup using our [`docker-compose`](https://github.com/mageinferno/magento2-docker-compose) config. This allows easy configuration and installation setup with our other Docker images.
 
 Once your docker-compose.yml file is all setup, you can execute setup by running:
 
@@ -58,4 +58,4 @@ Note that setup will take between 30 and 40 minutes to complete. A vast majority
 
 # Additional Info
 
-For additional info, please see the extended Readme at [https://bitbucket.org/mageinferno/magento2-docker-compose](https://bitbucket.org/mageinferno/magento2-docker-compose).
+For additional info, please see the extended Readme at [https://github.com/mageinferno/magento2-docker-compose](https://github.com/mageinferno/magento2-docker-compose).
