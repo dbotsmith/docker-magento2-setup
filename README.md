@@ -1,6 +1,6 @@
 # Versions
 
-- [`1.0.0`, `1.0`, `latest` (_Dockerfile_)](https://github.com/mageinferno/docker-magento2-setup/blob/master/Dockerfile)
+- [`1.0.1`, `1.0`, `latest` (_Dockerfile_)](https://github.com/mageinferno/docker-magento2-setup/blob/master/Dockerfile)
 
 # Description
 

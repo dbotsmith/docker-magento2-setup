@@ -30,8 +30,8 @@ if [ "$M2SETUP_INSTALL" = true ]; then
   fi
 
   if [ "$M2SETUP_PULL_GITHUB" = false ] && [ "$M2SETUP_PULL_COMPOSER" = false ]; then
-    # Wait a couple seconds for mysql container initialization...
-    /bin/sleep 2
+    # Wait a few for mysql container initialization...
+    /bin/sleep 10
   fi
 
   echo "Running Magento 2 setup script..."
@@ -47,6 +47,10 @@ if [ "$M2SETUP_INSTALL" = true ]; then
     --admin-user=$M2SETUP_ADMIN_USER \
     --admin-password=$M2SETUP_ADMIN_PASSWORD \
     $M2SETUP_USE_SAMPLE_DATA_STRING
+
+  echo "Deploying static content..."
+  rm -rf /src/var/cache /src/var/page_cache /src/var/view_preprocessed
+  /src/bin/magento setup:static-content:deploy
 fi
 
 if [ "$M2SETUP_PULL_NODE_MODULES" = true ]; then
@@ -56,8 +60,10 @@ if [ "$M2SETUP_PULL_NODE_MODULES" = true ]; then
   echo "Node modules installed. Syncing back to /src/node_modules..."
   rsync -rlzuIO --ignore-errors /root/node_modules/ /src/node_modules > /dev/null 2>&1
   rm -rf /root/node_modules /root/package.json
+
   echo "Running initial grunt refresh..."
-  cd /src && grunt refresh
+  # Run grunt refresh twice; first fails, second completes (GitHub issue #1732)
+  cd /src && grunt refresh && grunt refresh
 fi
 
 echo "The setup script has completed execution."
