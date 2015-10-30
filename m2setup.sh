@@ -1,19 +1,25 @@
 #!/bin/sh
 echo "Initializing setup..."
 
+if [ "$M2SETUP_GITHUB_BRANCH" = "" ]; then
+  M2SETUP_GITHUB_BRANCH=merchant_beta
+fi
+
 if [ "$M2SETUP_PULL_GITHUB" = true ]; then
-  echo "Pulling latest stable Magento 2 code from GitHub, this may take a few moments..."
-  git clone -b master https://github.com/magento/magento2.git /src
+  echo "Pulling latest Magento 2 code from GitHub ($M2SETUP_GITHUB_BRANCH branch), this may take a few moments..."
+  git clone -b $M2SETUP_GITHUB_BRANCH https://github.com/magento/magento2.git /src
 fi
 
 if [ "$M2SETUP_PULL_COMPOSER" = true ]; then
+  echo "Installing composer dependencies..."
+  cd /src && composer install
+
   if [ "$M2SETUP_USE_SAMPLE_DATA" = true ]; then
-    echo "Installing composer dependencies with sample data..."
-    cd /src && composer config repositories.magento composer http://packages.magento.com
-    cd /src && composer require magento/sample-data:~1.0.0-beta
-  else
-    echo "Installing composer dependencies without sample data..."
-    cd /src && composer install
+    echo "Installing sample data..."
+    git clone -b $M2SETUP_GITHUB_BRANCH https://github.com/magento/magento2-sample-data.git /src-sample-data
+    php -f /src-sample-data/dev/tools/build-sample-data.php -- --ce-source=/src
+    find /src-sample-data -type d -exec chmod 770 {} \;
+    find /src-sample-data -type f -exec chmod 660 {} \;
   fi
 fi
 
@@ -48,8 +54,11 @@ if [ "$M2SETUP_INSTALL" = true ]; then
     --admin-password=$M2SETUP_ADMIN_PASSWORD \
     $M2SETUP_USE_SAMPLE_DATA_STRING
 
-  echo "Deploying static content..."
-  rm -rf /src/var/cache /src/var/page_cache /src/var/view_preprocessed
+  echo "Reindexing all indexes..."
+  /src/bin/magento indexer:reindex
+
+  echo "Building static content..."
+  rm -rf /src/pub/static /src/var/cache /src/var/page_cache /src/var/view_preprocessed
   /src/bin/magento setup:static-content:deploy
 fi
 
