@@ -1,8 +1,8 @@
 #!/bin/sh
 echo "Initializing setup..."
 
-unzip -q /usr/local/share/magento-ce-2.0.0.zip -d /src
-rm /usr/local/share/magento-ce-2.0.0.zip
+unzip -q /magento-ce-2.0.0.zip -d /src
+rm /magento-ce-2.0.0.zip
 
 chmod +x /src/bin/magento
 
