@@ -1,8 +1,8 @@
 # Versions
 
-- [`2.0.0`, `2.0`, `latest` (_Dockerfile_)](https://github.com/mageinferno/docker-magento2-setup/blob/master/Dockerfile)
-- [`1.1.0`, `1.1`, (_Dockerfile_)](https://github.com/mageinferno/docker-magento2-setup/blob/1.1.0/Dockerfile)
-- [`1.0.1`, `1.0` (_Dockerfile_)](https://github.com/mageinferno/docker-magento2-setup/blob/1.0.1/Dockerfile)
+- [`2.0`, `latest` (_Dockerfile_)](https://github.com/mageinferno/docker-magento2-setup/blob/master/Dockerfile)
+- [`2.0.0` (_Dockerfile_)](https://github.com/mageinferno/docker-magento2-setup/blob/2.0.0/Dockerfile)
+- [`2.0.0-sd` (_Dockerfile_)](https://github.com/mageinferno/docker-magento2-setup/blob/2.0.0-sd/Dockerfile)
 
 # Description
 
@@ -10,7 +10,9 @@ This image is built from [`mageinferno/magento2-php`](https://hub.docker.com/r/m
 
 # What's in this image?
 
-This image contains a custom installer script which downloads Magento 2 source code from GitHub, installs composer dependencies, and runs the CLI installer.
+- The `2.0` image installs Magento 2 and all dependencies with Composer, then runs the CLI installer.
+- The `2.0.0` image installs Magento 2 from an archive (without sample data), then runs the CLI installer.
+- The `2.0.0-sd` image installs Magento 2 from an archive (with sample data), then runs the CLI installer.
 
 # How to use this image?
 
