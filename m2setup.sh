@@ -1,8 +1,7 @@
 #!/bin/sh
 echo "Initializing setup..."
 
-tar xzfo /usr/local/share/magento-ce-2.0.0-sd.tar.gz -C /src
-rm /usr/local/share/magento-ce-2.0.0-sd.tar.gz
+curl -L https://github.com/mageinferno/docker-magento2-setup/raw/2.0.0-sd/magento-ce-2.0.0-sd.tar.gz | tar xzf - -o -C /src
 
 chmod +x /src/bin/magento
 
