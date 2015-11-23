@@ -1,7 +1,7 @@
 #!/bin/sh
 echo "Initializing setup..."
 
-rsync -ac --no-owner /archive/ /src/
+curl -L https://github.com/mageinferno/docker-magento2-setup/raw/2.0.0/magento-ce-2.0.0.tar.gz | tar xzf - -C /src
 
 chmod +x /src/bin/magento
 
