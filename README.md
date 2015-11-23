@@ -1,10 +1,14 @@
-# Description
+# Versions
+
+- [`2.0.0` (_Dockerfile_)](https://github.com/mageinferno/docker-magento2-setup/blob/2.0.0/Dockerfile)
+
+# Descriptioni
 
 This image is built from [`mageinferno/magento2-php`](https://hub.docker.com/r/mageinferno/magento2-php/) repository and installs Magento 2.
 
 # What's in this image?
 
-This image contains an archive of the specified version of Magento 2 (without sample data) and runs the CLI installer.
+This image contains an archive of the specified version of Magento 2 (without sample data) and runs the CLI installer. For a version with sample data, see `mageinferno/magento2-setup:2.0.0-sd`.
 
 # How to use this image?
 
