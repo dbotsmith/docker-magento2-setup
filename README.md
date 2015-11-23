@@ -1,10 +1,14 @@
-# Description
+# Versions
+
+- [`2.0.0-sd` (_Dockerfile_)](https://github.com/mageinferno/docker-magento2-setup/blob/2.0.0-sd/Dockerfile)
+
+# Descriptioni
 
 This image is built from [`mageinferno/magento2-php`](https://hub.docker.com/r/mageinferno/magento2-php/) repository and installs Magento 2.
 
 # What's in this image?
 
-This image contains an archive of the specified version of Magento 2 (with sample data) and runs the CLI installer.
+This image contains an archive of the specified version of Magento 2 (with sample data) and runs the CLI installer. For a version without sample data, see `mageinferno/magento2-setup:2.0.0`.
 
 # How to use this image?
 
@@ -14,7 +18,7 @@ Once your docker-compose.yml file is all setup, you can execute setup by running
 
 `docker-compose run --rm setup`
 
-This will execute a one-off container that runs the setup script included in this Docker image. Note that setup will take around 20 minutes to complete. A vast majority of this time is from installing sample data (configurable products, specifically).
+This will execute a one-off container that runs the setup script included in this Docker image. Note that setup will take around 10 minutes to complete.
 
 # Additional Info
 
