@@ -2,7 +2,7 @@
 
 - [`2.0.0` (_Dockerfile_)](https://github.com/mageinferno/docker-magento2-setup/blob/2.0.0/Dockerfile)
 
-# Descriptioni
+# Description
 
 This image is built from [`mageinferno/magento2-php`](https://hub.docker.com/r/mageinferno/magento2-php/) repository and installs Magento 2.
 
