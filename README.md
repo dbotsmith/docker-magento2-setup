@@ -22,7 +22,9 @@ Once your docker-compose.yml file is all setup, you can execute setup by running
 
 `docker-compose run --rm setup`
 
-This will execute a one-off container that runs the setup script included in this Docker image. Note that setup will take around 30 minutes to complete. A vast majority of this time is from downloading Composer dependencies, and installing sample data (configurable products, specifically). Setting `M2SETUP_USE_SAMPLE_DATA` to false will expedite the install process by skipping the installation of sample data.
+This will execute a one-off container that runs the setup script included in this Docker image. Note that composer setup will take around 30 minutes to complete (with sample data). A vast majority of this time is from downloading Composer dependencies, and installing sample data (configurable products, specifically). Setting `M2SETUP_USE_SAMPLE_DATA` to false will expedite the install process by skipping the installation of sample data.
+
+Using the `2.0.x` or `2.0.x-sd` containers will have a much faster install time at around 3 minutes and 10 minutes, respectively.
 
 # Additional Info
 
