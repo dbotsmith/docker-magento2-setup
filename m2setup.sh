@@ -1,14 +1,12 @@
 #!/bin/sh
-echo "Initializing setup..."
-
-curl -L https://storage.googleapis.com/mageinferno-docker-magento2-setup/magento-ce-2.0.0-sd.tar.gz | tar xzf - -o -C /src
-
-chmod +x /src/bin/magento
-
 if [ -f /src/app/etc/config.php ] || [ -f /src/app/etc/env.php ]; then
-  echo "Already installed? Either app/etc/config.php or app/etc/env.php exist, please remove both files to continue setup."
+  echo "It appears Magento is already installed (app/etc/config.php or app/etc/env.php exist). Quitting setup..."
   exit
 fi
+
+echo "Downloading and untarring archive..."
+curl -L https://storage.googleapis.com/mageinferno-docker-magento2-setup/magento-ce-2.0.0-sd.tar.gz | tar xzf - -o -C /src
+chmod +x /src/bin/magento
 
 echo "Running Magento 2 setup script..."
 /src/bin/magento setup:install \
