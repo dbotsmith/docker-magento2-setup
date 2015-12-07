@@ -6,7 +6,7 @@ echo "Initializing setup..."
 # Temporary fix for composer https://github.com/magento/magento2-community-edition/issues/15
 /usr/local/bin/composer self-update 1.0.0-alpha11
 
-/usr/local/bin/composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition /src
+/usr/local/bin/composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition /src
 
 chmod +x /src/bin/magento
 
