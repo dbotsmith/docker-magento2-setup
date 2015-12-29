@@ -1,4 +1,4 @@
-FROM mageinferno/magento2-php:7.0-fpm
+FROM dockermagento2setup_php-fpm
 MAINTAINER Mark Shust <mark.shust@mageinferno.com>
 
 ADD ./m2setup.sh /usr/local/bin/

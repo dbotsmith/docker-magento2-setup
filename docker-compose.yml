@@ -1,0 +1,71 @@
+app:
+  image: mageinferno/magento2-nginx:1.9
+  links:
+    - php-fpm
+    - db
+  volumes_from:
+    - appdata
+  environment:
+    - VIRTUAL_HOST=purchmarketplace.docker
+
+appdata:
+  image: tianon/true
+  volumes:
+    - ./src:/src
+    - ~/.composer:/root/.composer
+
+"php-fpm":
+  build: ../docker-magento2-php/7.0/fpm
+  links:
+    - db
+  volumes_from:
+    - appdata
+
+db:
+  image: mariadb:10.0
+  ports:
+    - "8001:3306"
+  volumes_from:
+    - dbdata
+  environment:
+    - MYSQL_ROOT_PASSWORD=magento2
+    - MYSQL_DATABASE=magento2
+    - MYSQL_USER=magento2
+    - MYSQL_PASSWORD=magento2
+
+dbdata:
+  image: tianon/true
+  volumes:
+    - /var/lib/mysql
+
+setup:
+  build: .
+  links:
+    - db
+    - rabbitmq
+  volumes_from:
+    - appdata
+  environment:
+    - M2SETUP_DB_HOST=db
+    - M2SETUP_DB_NAME=magento2
+    - M2SETUP_DB_USER=magento2
+    - M2SETUP_DB_PASSWORD=magento2
+    - M2SETUP_BASE_URL=http://purchmarketplace.docker/
+    - M2SETUP_ADMIN_FIRSTNAME=Admin
+    - M2SETUP_ADMIN_LASTNAME=User
+    - M2SETUP_ADMIN_EMAIL=dsmith@purch.com
+    - M2SETUP_ADMIN_USER=magento2
+    - M2SETUP_ADMIN_PASSWORD=magento2
+    - M2SETUP_USE_SAMPLE_DATA=false
+    - RABBITMQ_HOST=rabbitmq
+    - RABBITMQ_PORT="5672"
+  env_file:
+    - rabbitmq.env
+
+rabbitmq:
+  image: rabbitmq:3.5.6-management
+  hostname: rabbitmq
+  environment:
+    - HOSTNAME=rabbitmq
+    - RABBITMQ_NODENAME=rabbitmq
+  env_file: rabbitmq.env

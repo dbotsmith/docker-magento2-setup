@@ -39,6 +39,10 @@ echo "Running Magento 2 setup script..."
   --admin-email=$M2SETUP_ADMIN_EMAIL \
   --admin-user=$M2SETUP_ADMIN_USER \
   --admin-password=$M2SETUP_ADMIN_PASSWORD \
+  --amqp-host=$RABBITMQ_HOST \
+  --amqp-port=$RABBITMQ_PORT \
+  --amqp-user=$RABBITMQ_DEFAULT_USER \
+  --amqp-password=$RABBITMQ_DEFAULT_PASS \
   $M2SETUP_USE_SAMPLE_DATA_STRING
 
 echo "Reindexing all indexes..."
